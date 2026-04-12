@@ -1,8 +1,8 @@
 export const siteConfig = {
-  name: "Nikhil Bhalla",
+  name: "Nikhil Bhalla!",
   title: "Student | Software Developer",
   description: "Portfolio website of Nikhil Bhalla",
-  accentColor: "#300feb",
+  accentColor: "#2500f7",
   social: {
     email: "bhallan803@gmail.com",
     linkedin: "https://www.linkedin.com/in/nikhil-bhalla-07311635b/",
@@ -22,16 +22,6 @@ export const siteConfig = {
     }
   ],
   experience: [
-    {
-      company: "Tech Company",
-      title: "Senior Software Engineer",
-      dateRange: "Jan 2022 - Present",
-      bullets: [
-        "Led development of microservices architecture serving 1M+ users",
-        "Reduced API response times by 40% through optimization",
-        "Mentored team of 5 junior developers",
-      ],
-    }
   ],
   education: [
     {
