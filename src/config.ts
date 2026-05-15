@@ -18,8 +18,15 @@ export const siteConfig = {
       description:
         "A web application that uses machine learning to analyze news articles and determine their credibility, helping users identify potential misinformation",
       link: "https://github.com/dudemillion/AI-Fake-News-Detector",
-      skills: ["Python", "Streamlit", "AI/ML"],
-    }
+      skills: ["Python", "Streamlit", "AI/ML"]
+    },
+    {
+      name: "BFS Pathfinding Visualizer",
+      description:
+        "A web-based tool that visually demonstrates the Breadth-First Search (BFS) algorithm for pathfinding, allowing users to see how the algorithm explores a grid to find the shortest path between two points.",
+      link: "https://github.com/dudemillion/Pathfinder",
+      skills: ["Javascript", "HTML", "CSS"]
+    },
   ],
   experience: [
   ],
