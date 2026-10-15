@@ -46,6 +46,32 @@ export const siteConfig = {
     },
   ],
   projects: [
+    
+    {
+      name: "Project LAZARUS",
+      eyebrow: "Local-First AI · Personal Assistant",
+      description:
+        "An ongoing AI engineering project focused on building a privacy-conscious personal assistant with persistent memory and contextual intelligence. Currently features a modular backend, local memory storage, configurable personality system, and interactive dashboard, with plans for local LLM integration and intelligent home automation.",
+      image: "projects/project-lazarus.png",
+      imageAlt: "The Project LAZARUS dashboard displaying memory management, system activity, and a chat interface.",
+      preview: "lazarus",
+      repository: "https://github.com/dudemillion/Project-LAZARUS",
+      liveDemo: null,
+      skills: [
+        "Python",
+        "FastAPI",
+        "Streamlit",
+        "SQLite",
+        "API Development",
+        "pytest",
+        "GitHub Actions"
+      ],
+      highlights: [
+        "Developed a local memory system with structured event storage, daily journals, audit logging, and keyword search.",
+        "Engineered a modular AI architecture featuring configurable personality rules, a mock LLM gateway, and metadata-aware memory chunking.",
+        "Implemented automated testing with 23 passing tests at the latest checkpoint and continuous integration through GitHub Actions."
+      ],
+    },
     {
       name: "AI-Powered Misinformation Detector",
       eyebrow: "Machine learning · NLP",
