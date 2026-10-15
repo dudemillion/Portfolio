@@ -53,7 +53,7 @@ export const siteConfig = {
       description:
         "An ongoing AI engineering project focused on building a privacy-conscious personal assistant with persistent memory and contextual intelligence. Currently features a modular backend, local memory storage, configurable personality system, and interactive dashboard, with plans for local LLM integration and intelligent home automation.",
       image: "projects/project-lazarus.png",
-      imageAlt: "The Project LAZARUS dashboard displaying memory management, system activity, and a chat interface.",
+      imageAlt: "The Project LAZARUS dashboard displaying backend status and a chat interface.",
       preview: "image",
       repository: "https://github.com/dudemillion/Project-LAZARUS",
       liveDemo: null,
