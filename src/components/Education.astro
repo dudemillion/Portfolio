@@ -1,60 +1,65 @@
 ---
 import { siteConfig } from "../config";
-const hasEducation = siteConfig.education && siteConfig.education.length > 0;
 ---
 
-{
-  hasEducation && (
-    <section id="education" class="p-8 sm:p-12 md:p-16 lg:p-24">
-      <div>
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
-          <div class="lg:col-span-4">
-            <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900">
-              Education
-            </h2>
-            <div
-              class="w-[75px] h-[5px] mt-2 rounded-full"
-              style={`background-color: ${siteConfig.accentColor}`}
-            />
-          </div>
-
-          <div class="lg:col-span-8">
-            <div class="space-y-8">
-              {siteConfig.education.map((edu) => (
-                <div class="bg-white rounded-lg shadow-sm border border-gray-100 p-4 sm:p-5 md:p-6 hover:shadow-md transition-shadow duration-300">
-                  <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-4">
-                    <div>
-                      <h3 class="text-lg sm:text-xl font-semibold text-gray-900">
-                        {edu.degree}
-                      </h3>
-                      <p
-                        class="text-base sm:text-lg"
-                        style={`color: ${siteConfig.accentColor}`}
-                      >
-                        {edu.school}
-                      </p>
-                    </div>
-                    <span class="text-xs sm:text-sm text-gray-500 mt-2 sm:mt-0">
-                      {edu.dateRange}
-                    </span>
-                  </div>
-
-                  <ul class="space-y-2">
-                    {edu.achievements.map((achievement) => (
-                      <li class="flex items-start">
-                        <span class="inline-block w-1.5 h-1.5 rounded-full bg-gray-400 mt-2 mr-3 flex-shrink-0" />
-                        <span class="text-sm sm:text-base text-gray-600">
-                          {achievement}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          </div>
+<section id="education" class="px-6 py-20 sm:px-10 sm:py-24 md:px-16 lg:px-24">
+  <div class="mx-auto max-w-7xl">
+    <div class="grid grid-cols-1 items-start gap-10 lg:grid-cols-12 lg:gap-16">
+      <div class="lg:col-span-4">
+        <p class="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-indigo-700 sm:text-sm">
+          Education
+        </p>
+        <h2 class="text-4xl font-bold tracking-[-0.035em] text-gray-950 sm:text-5xl xl:text-6xl">
+          Learning in and beyond the classroom.
+        </h2>
+        <div
+          class="mt-5 h-1.5 w-20 rounded-full"
+          style={`background-color: ${siteConfig.accentColor}`}
+        >
         </div>
       </div>
-    </section>
-  )
-}
+
+      <div class="space-y-6 lg:col-span-8">
+        {
+          siteConfig.education.map((edu) => (
+            <article class="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm sm:p-8">
+              <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                <div>
+                  <p class="text-sm font-bold uppercase tracking-[0.12em] text-indigo-700">
+                    {edu.program}
+                  </p>
+                  <h3 class="mt-2 break-words text-2xl font-bold tracking-tight text-gray-950 sm:text-3xl">
+                    {edu.school}
+                  </h3>
+                </div>
+                <span class="w-fit rounded-full bg-indigo-50 px-3 py-1.5 text-xs font-bold text-indigo-800 sm:text-sm">
+                  {edu.dateRange}
+                </span>
+              </div>
+
+              <p class="mt-5 max-w-3xl text-base leading-relaxed text-gray-600 sm:text-lg">
+                {edu.summary}
+              </p>
+
+              <ul class="mt-7 grid gap-3 sm:grid-cols-3">
+                {edu.achievements.map((achievement) => (
+                  <li class="flex gap-3 rounded-2xl bg-gray-50 p-4 text-sm font-medium leading-relaxed text-gray-700">
+                    <svg
+                      aria-hidden="true"
+                      class="mt-0.5 h-4 w-4 shrink-0 text-indigo-700"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path d="m10 1.75 2.35 4.76 5.25.76-3.8 3.7.9 5.23-4.7-2.47-4.7 2.47.9-5.23-3.8-3.7 5.25-.76L10 1.75Z" />
+                    </svg>
+                    <span>{achievement}</span>
+                  </li>
+                ))}
+              </ul>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,5 +1,38 @@
 @import "tailwindcss";
 
+html {
+  scroll-behavior: smooth;
+  background: #ffffff;
+}
+
 body {
   font-family: 'IBM Plex Mono', monospace;
+  margin: 0;
+  color: #111827;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+section {
+  scroll-margin-top: 5rem;
+}
+
+::selection {
+  color: #ffffff;
+  background: #2500f7;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }

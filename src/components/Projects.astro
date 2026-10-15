@@ -1,104 +1,166 @@
 ---
 import { siteConfig } from "../config";
-const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
+
+const base = import.meta.env.BASE_URL;
+const gridCells = Array.from({ length: 96 }, (_, index) => index);
+const pathCells = new Set([73, 61, 49, 50, 51, 39, 27, 28, 29, 17, 18, 19, 20]);
+const wallCells = new Set([38, 62, 64, 65, 66, 42, 30, 31, 32, 56, 68]);
+const startCell = 73;
+const endCell = 20;
 ---
 
-{
-  hasProjects && (
-    <section id="projects" class="p-8 sm:p-12 md:p-16 lg:p-24">
-      <div>
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
-          <div class="lg:col-span-4">
-            <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900">
-              Projects
-            </h2>
-            <div
-              class="w-[75px] h-[5px] mt-2 rounded-full"
-              style={`background-color: ${siteConfig.accentColor}`}
-            />
-          </div>
+<section id="projects" class="bg-gray-950 px-6 py-20 text-white sm:px-10 sm:py-24 md:px-16 lg:px-24">
+  <div class="mx-auto max-w-7xl">
+    <div class="max-w-3xl">
+      <p class="text-xs font-bold uppercase tracking-[0.18em] text-indigo-300 sm:text-sm">
+        Featured work
+      </p>
+      <h2 class="mt-3 text-4xl font-bold tracking-[-0.035em] sm:text-5xl xl:text-6xl">
+        Projects built to learn, test, and explain.
+      </h2>
+      <p class="mt-5 text-base leading-relaxed text-gray-300 sm:text-lg">
+        Each project started with a question and became a working piece of software. The details below show the decisions behind the result—not just the technology list.
+      </p>
+    </div>
 
-          <div class="lg:col-span-8">
-            <div class="space-y-8">
-              {siteConfig.projects.map((project, index) => {
-                const Component = project.link ? "a" : "div";
-                const linkProps = project.link
-                  ? {
-                      href: project.link,
-                      target: "_blank",
-                      rel: "noopener noreferrer",
-                    }
-                  : {};
-
-                return (
-                  <div class="group relative">
-                    <Component
-                      {...linkProps}
-                      class={`block relative p-4 sm:p-6 md:p-8 bg-gray-50 rounded-xl sm:rounded-2xl border border-gray-200 transition-all duration-300 ${
-                        project.link
-                          ? "hover:bg-white hover:shadow-xl hover:border-gray-300 hover:-translate-y-1"
-                          : ""
-                      }`}
-                    >
-                      {project.link && (
-                        <div class="absolute top-4 right-4 sm:top-6 sm:right-6 md:top-8 md:right-8 w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 flex items-center justify-center bg-gray-900 rounded-full text-white transition-all duration-300 group-hover:bg-gray-700">
-                          <svg
-                            class="w-4 h-4 sm:w-4.5 sm:h-4.5 md:w-5 md:h-5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M7 17L17 7M17 7H7M17 7V17"
-                            />
-                          </svg>
-                        </div>
-                      )}
-
-                      <div class="space-y-4">
-                        <div>
-                          <span
-                            class="text-sm font-mono"
-                            style={{ color: siteConfig.accentColor }}
-                          >
-                            0{index + 1}
-                          </span>
-                          <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mt-1">
-                            {project.name}
-                          </h3>
-                        </div>
-
-                        <p
-                          class={`text-base sm:text-lg text-gray-600 leading-relaxed ${project.link ? "pr-12 sm:pr-14 md:pr-16" : ""}`}
-                        >
-                          {project.description}
-                        </p>
-
-                        {project.skills && project.skills.length > 0 && (
-                          <div class="flex flex-wrap gap-1.5 sm:gap-2 pt-2">
-                            {project.skills.map((skill) => (
-                              <span
-                                class={`px-2.5 sm:px-3 py-1 sm:py-1.5 bg-gray-900 text-white rounded-md sm:rounded-lg text-xs sm:text-sm font-medium transition-all duration-300 ${
-                                  project.link ? "group-hover:bg-gray-800" : ""
-                                }`}
-                              >
-                                {skill}
-                              </span>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                    </Component>
+    <div class="mt-12 space-y-8 sm:mt-16">
+      {
+        siteConfig.projects.map((project, index) => (
+          <article class="overflow-hidden rounded-3xl border border-white/10 bg-white/[0.055] shadow-2xl shadow-black/20">
+            <div class="grid lg:grid-cols-2">
+              <div
+                class:list={[
+                  "relative min-h-[19rem] overflow-hidden border-white/10 sm:min-h-[25rem]",
+                  index % 2 === 0
+                    ? "lg:order-1 lg:border-r"
+                    : "lg:order-2 lg:border-l",
+                ]}
+              >
+                {project.preview === "image" && project.image ? (
+                  <div class="absolute inset-0 flex items-center bg-[#0e1117] p-5 sm:p-8">
+                    <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(79,70,229,0.26),transparent_52%)]" />
+                    <img
+                      src={`${base}${project.image}`}
+                      alt={project.imageAlt}
+                      width="881"
+                      height="732"
+                      loading="eager"
+                      class="relative mx-auto w-full rounded-2xl border border-white/10 shadow-2xl shadow-black/40"
+                    />
                   </div>
-                );
-              })}
+                ) : (
+                  <div
+                    class="absolute inset-0 flex items-center justify-center bg-indigo-950 p-8 sm:p-12"
+                    role="img"
+                    aria-label={project.imageAlt}
+                  >
+                    <div class="absolute inset-0 bg-[radial-gradient(circle_at_75%_20%,rgba(129,140,248,0.35),transparent_46%)]" />
+                    <div class="relative w-full max-w-md rounded-2xl border border-white/15 bg-gray-950/70 p-4 shadow-2xl backdrop-blur sm:p-6">
+                      <div class="mb-4 flex items-center justify-between text-[10px] font-bold uppercase tracking-[0.16em] text-indigo-200 sm:text-xs">
+                        <span>Breadth-first search</span>
+                        <span>Shortest path</span>
+                      </div>
+                      <div class="grid gap-1" style="grid-template-columns: repeat(12, minmax(0, 1fr));">
+                        {gridCells.map((cell) => (
+                          <span
+                            class:list={[
+                              "aspect-square rounded-[3px] border",
+                              cell === startCell
+                                ? "border-amber-200 bg-amber-300"
+                                : cell === endCell
+                                  ? "border-rose-200 bg-rose-400"
+                                  : wallCells.has(cell)
+                                    ? "border-gray-500 bg-gray-700"
+                                    : pathCells.has(cell)
+                                      ? "border-indigo-300 bg-indigo-400"
+                                      : "border-white/10 bg-white/5",
+                            ]}
+                          />
+                        ))}
+                      </div>
+                      <div class="mt-4 flex flex-wrap gap-4 text-[10px] font-medium text-gray-300 sm:text-xs">
+                        <span class="flex items-center gap-1.5"><i class="h-2.5 w-2.5 rounded-sm bg-amber-300" />Start</span>
+                        <span class="flex items-center gap-1.5"><i class="h-2.5 w-2.5 rounded-sm bg-rose-400" />End</span>
+                        <span class="flex items-center gap-1.5"><i class="h-2.5 w-2.5 rounded-sm bg-indigo-400" />Path</span>
+                        <span class="flex items-center gap-1.5"><i class="h-2.5 w-2.5 rounded-sm bg-gray-700" />Wall</span>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              <div
+                class:list={[
+                  "flex flex-col justify-center p-6 sm:p-9 lg:p-12",
+                  index % 2 === 0 ? "lg:order-2" : "lg:order-1",
+                ]}
+              >
+                <div class="flex items-center gap-3">
+                  <span class="text-sm font-bold text-indigo-300">0{index + 1}</span>
+                  <span class="h-px w-8 bg-white/20" />
+                  <span class="text-xs font-semibold uppercase tracking-[0.14em] text-gray-400">
+                    {project.eyebrow}
+                  </span>
+                </div>
+
+                <h3 class="mt-5 text-2xl font-bold tracking-tight text-white sm:text-3xl">
+                  {project.name}
+                </h3>
+                <p class="mt-4 text-base leading-relaxed text-gray-300 sm:text-lg">
+                  {project.description}
+                </p>
+
+                <ul class="mt-6 space-y-3">
+                  {project.highlights.map((highlight) => (
+                    <li class="flex gap-3 text-sm leading-relaxed text-gray-300 sm:text-base">
+                      <svg
+                        aria-hidden="true"
+                        class="mt-1 h-4 w-4 shrink-0 text-indigo-300"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path fill-rule="evenodd" d="M16.704 5.293a1 1 0 0 1 .003 1.414l-7.5 7.53a1 1 0 0 1-1.414.003l-4.5-4.47a1 1 0 1 1 1.41-1.42l3.792 3.765 6.795-6.819a1 1 0 0 1 1.414-.003Z" clip-rule="evenodd" />
+                      </svg>
+                      <span>{highlight}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <div class="mt-7 flex flex-wrap gap-2">
+                  {project.skills.map((skill) => (
+                    <span class="rounded-lg border border-white/10 bg-white/5 px-2.5 py-1.5 text-xs font-semibold text-gray-200">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+
+                <div class="mt-8 flex flex-wrap gap-3">
+                  {project.liveDemo && (
+                    <a
+                      href={project.liveDemo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center gap-2 rounded-xl bg-white px-4 py-2.5 text-sm font-bold text-gray-950 transition hover:-translate-y-0.5 hover:bg-indigo-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-indigo-300"
+                    >
+                      Live demo
+                      <svg aria-hidden="true" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M7 7h10v10" /></svg>
+                    </a>
+                  )}
+                  <a
+                    href={project.repository}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-2 rounded-xl border border-white/20 px-4 py-2.5 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:border-white/40 hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-indigo-300"
+                  >
+                    View source
+                    <svg aria-hidden="true" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M7 7h10v10" /></svg>
+                  </a>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  )
-}
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

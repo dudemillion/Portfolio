@@ -1,44 +1,99 @@
 export const siteConfig = {
   name: "Nikhil Bhalla",
-  title: "Student | Software Developer",
-  description: "Portfolio website of Nikhil Bhalla",
+  shortName: "NB",
+  title: "High School Senior & Software Developer",
+  description:
+    "Nikhil Bhalla is a high school senior building projects in machine learning, web development, and algorithms.",
+  siteUrl: "https://dudemillion.github.io/Portfolio/",
   accentColor: "#2500f7",
+  hero: {
+    eyebrow: "High school senior · Class of 2027",
+    statement:
+      "I build software that makes complex ideas easier to understand.",
+    detail:
+      "Exploring machine learning, web development, and algorithms through hands-on projects.",
+  },
   social: {
     email: "bhallan803@gmail.com",
     linkedin: "https://www.linkedin.com/in/nikhil-bhalla-07311635b/",
-    twitter: "https://x.com/LazarusDM",
     github: "https://github.com/dudemillion",
   },
-  aboutMe:
-    "Hi! I'm Nikhil, a passionate software developer with a knack for building innovative solutions. With quite the foundation in full-stack development, I thrive on creating amazing and creative applications. My journey in tech has been fueled by curiosity and a drive to continuously learn and grow. When I'm not coding, you can find me exploring the latest tech trends or exploring other projects and personal creative endeavors.",
-  skills: ["Javascript", "HTML", "CSS", "Python", "Lua", "Microsoft Office", "AI/ML"],
+  about: [
+    "I'm a senior at Wake Early College of Information and Biotechnologies who enjoys turning technical ideas into working software.",
+    "My projects range from an explainable machine-learning tool for analyzing misinformation to an interactive breadth-first-search pathfinder. I enjoy comparing approaches, understanding tradeoffs, and documenting both what works and what could improve.",
+  ],
+  skills: [
+    "Python",
+    "JavaScript",
+    "Java",
+    "HTML & CSS",
+    "Machine Learning",
+    "Streamlit",
+    "Git & GitHub",
+  ],
+  approach: [
+    {
+      label: "Build",
+      text: "Turn ideas into working, interactive software.",
+    },
+    {
+      label: "Compare",
+      text: "Test different approaches and choose practical tradeoffs.",
+    },
+    {
+      label: "Explain",
+      text: "Document how a system works, where it can fail, and how it could improve.",
+    },
+  ],
   projects: [
     {
-      name: "AI Fake News Detector",
+      name: "AI-Powered Misinformation Detector",
+      eyebrow: "Machine learning · NLP",
       description:
-        "A web application that uses machine learning to analyze news articles and determine their credibility, helping users identify potential misinformation",
-      link: "https://github.com/dudemillion/AI-Fake-News-Detector",
-      skills: ["Python", "Streamlit", "AI/ML"]
+        "A text-classification application that analyzes news headlines or articles, reports a prediction with confidence, and shows which words most influenced the result.",
+      image: "projects/misinformation-detector.png",
+      imageAlt:
+        "The misinformation detector showing a Real prediction and a chart of influential words.",
+      preview: "image",
+      repository: "https://github.com/dudemillion/AI-Fake-News-Detector",
+      liveDemo: null,
+      skills: ["Python", "scikit-learn", "Streamlit", "NLP"],
+      highlights: [
+        "Trained a TF-IDF and logistic-regression classifier for headline and article text.",
+        "Compared the final model with a DistilBERT experiment and chose the more practical approach.",
+        "Added word-level explanations and documented limitations such as model drift.",
+      ],
     },
     {
       name: "BFS Pathfinding Visualizer",
+      eyebrow: "Algorithms · Interactive web",
       description:
-        "A web-based tool that visually demonstrates the Breadth-First Search (BFS) algorithm for pathfinding, allowing users to see how the algorithm explores a grid to find the shortest path between two points.",
-      link: "https://github.com/dudemillion/Pathfinder",
-      skills: ["Javascript", "HTML", "CSS"]
+        "An interactive 10×10 grid that finds and displays a shortest available path between two points while avoiding walls placed by the user.",
+      image: null,
+      imageAlt: "An illustrative grid showing a path around wall cells.",
+      preview: "pathfinder",
+      repository: "https://github.com/dudemillion/Pathfinder",
+      liveDemo: "https://dudemillion.github.io/Pathfinder/",
+      skills: ["JavaScript", "HTML", "CSS", "Algorithms"],
+      highlights: [
+        "Models start, end, wall, visited, and path states across a user-configurable grid.",
+        "Uses breadth-first search to return a shortest path when one exists.",
+        "Includes an optional step-by-step animation and a browser-based live demo.",
+      ],
     },
   ],
-  experience: [
-  ],
+  experience: [],
   education: [
     {
       school: "Wake Early College of Information and Biotechnologies",
-      degree: "Computer Programming",
-      dateRange: "2023-2027",
+      program: "High School Senior · Dual Enrollment",
+      dateRange: "Expected graduation: 2027",
+      summary:
+        "Completing high school requirements at Wake Early College while taking college-level computer programming coursework through Wake Technical Community College.",
       achievements: [
-        "1x Student of the Month",
-        "3 years a part of the Student Council",
-        "A/AB honor roll awards for all semesters so far",
+        "Student of the Month",
+        "Student Council member for two years",
+        "A/AB Honor Roll every completed semester",
       ],
     },
   ],
